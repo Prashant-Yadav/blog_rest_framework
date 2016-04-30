@@ -1,0 +1,46 @@
+{% extends 'blogs/base.html' %}
+
+{% block title %}
+	<title>Blog | Home</title>		
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="col-sm-9">
+			<div class="panel-group">
+				{% if blogs %}
+					{% for blog in blogs %}
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3><a href="{% url 'blogs' blog.id %}">{{ blog.title }}</a></h3>
+							</div>
+							<div class="panel-body" style="max-height:70px;">
+								<p>{{ blog.text }}</p>
+							</div>
+						</div>
+
+						<hr>
+
+					{% endfor %}
+					<!--
+					{% if user %}
+						<a class="btn btn-primary" href="{% url 'blogs:add_blog' %}">Add New Blog</a>	
+					{% endif %}-->
+				{% else %}
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3>There are no blogs right now.</h3>
+						</div>
+
+						<hr>
+						
+						<div class="panel-heading">
+							<p><a href="{% url 'blogs' %}">Add a new blog</a></p>
+						</div>
+					</div>
+				{% endif %}
+			</div>	
+		</div>
+		
+	</div>
+{% endblock %}
